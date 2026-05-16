@@ -1,5 +1,5 @@
 import React from "react";
-import type { QuickLink, LinkVariant } from "../types/dashboard";
+import type { QuickLink, LinkVariant } from "../../types/dashboard";
 
 // ─── Variant styles ───────────────────────────────────────────────────────────
 

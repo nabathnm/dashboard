@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState } from "react";
-import { TaskTag } from "../types/dashboard";
+import { TaskTag, Task } from "../../types/dashboard";
 
 // ─── Tag styles ───────────────────────────────────────────────────────────────
 
@@ -29,11 +31,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle }) => (
   >
     {/* checkbox */}
     <div
-      className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 transition-all ${
-        task.done
-          ? "bg-teal-500 border-teal-500"
-          : "border-zinc-300 dark:border-zinc-600"
-      }`}
+      className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 transition-all ${task.done
+        ? "bg-teal-500 border-teal-500"
+        : "border-zinc-300 dark:border-zinc-600"
+        }`}
       aria-hidden="true"
     >
       {task.done && (
@@ -55,11 +56,10 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle }) => (
 
     {/* text */}
     <span
-      className={`flex-1 text-sm ${
-        task.done
-          ? "line-through text-zinc-400 dark:text-zinc-600"
-          : "text-zinc-700 dark:text-zinc-200"
-      }`}
+      className={`flex-1 text-sm ${task.done
+        ? "line-through text-zinc-400 dark:text-zinc-600"
+        : "text-zinc-700 dark:text-zinc-200"
+        }`}
     >
       {task.text}
     </span>

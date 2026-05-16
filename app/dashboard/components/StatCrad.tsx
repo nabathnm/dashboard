@@ -1,5 +1,5 @@
 import React from "react";
-import { StatCardData, StatAccent } from "../types/dashboard";
+import { StatCardData, StatAccent } from "../../types/dashboard";
 
 
 // ─── Accent token maps ────────────────────────────────────────────────────────
