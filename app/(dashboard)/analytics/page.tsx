@@ -10,6 +10,7 @@ import ExpenseDonutChart from "@/components/dashboard/expense-donut-chart";
 import MonthlySpendingChart from "@/components/dashboard/monthly-spending-chart";
 import { formatCurrency } from "@/hooks/use-currency";
 import { ArrowDownLeft, ArrowUpRight, Wallet } from "lucide-react";
+import { PageHeader } from "@/components/layout/page-header";
 
 export default function AnalyticsPage() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
@@ -34,12 +35,10 @@ export default function AnalyticsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Analytics</h1>
-          <p className="text-sm text-muted-foreground mt-1">Deep dive into your financial habits and trends</p>
-        </div>
-        <div className="w-full sm:w-auto">
+      <PageHeader 
+        title="Analytics" 
+        description="Deep dive into your financial habits and trends"
+      >
           <Select 
             value={selectedDate.toISOString()} 
             onValueChange={(v) => { if (typeof v === "string") setSelectedDate(new Date(v)) }}
@@ -55,8 +54,7 @@ export default function AnalyticsPage() {
               ))}
             </SelectContent>
           </Select>
-        </div>
-      </div>
+      </PageHeader>
 
       <div className="grid gap-4 md:grid-cols-3">
         <Card className="border-border/30 bg-card/50">
