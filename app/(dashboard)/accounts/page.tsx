@@ -16,6 +16,7 @@ import { createAccountSchema, type CreateAccountFormValues } from "@/lib/schemas
 import { useAccounts, useCreateAccount, useUpdateAccount, useDeleteAccount } from "@/hooks/use-accounts";
 import { formatCurrency } from "@/hooks/use-currency";
 import type { Account } from "@/types/database";
+import { PageHeader } from "@/components/layout/page-header";
 
 const typeIcons: Record<string, React.ElementType> = {
   bank: Landmark,
@@ -87,11 +88,10 @@ export default function AccountsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">Accounts</h1>
-          <p className="text-sm text-muted-foreground mt-1">Manage your bank accounts, e-wallets, and cash</p>
-        </div>
+      <PageHeader 
+        title="Accounts" 
+        description="Manage your bank accounts, e-wallets, and cash"
+      >
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <DialogTrigger render={
             <Button onClick={openAddDialog} className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:opacity-90 shadow-lg shadow-violet-500/20">
@@ -140,7 +140,7 @@ export default function AccountsPage() {
             </form>
           </DialogContent>
         </Dialog>
-      </div>
+      </PageHeader>
 
       <Card className="border-border/30 bg-card/50 overflow-hidden relative">
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-violet-500/10 to-transparent rounded-full blur-3xl -z-10" />
