@@ -10,6 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { aiEvaluationService } from "@/services/ai-evaluation.service";
 import { toast } from "sonner";
+import { PageHeader } from "@/components/layout/page-header";
 
 const severityConfig = {
   info: { icon: Info, color: "text-blue-400", bg: "bg-blue-500/10", border: "border-blue-500/20" },
@@ -52,12 +53,10 @@ export default function AIEvaluationPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">AI Financial Evaluation</h1>
-          <p className="text-sm text-muted-foreground mt-1">Get personalized insights and scoring based on your spending patterns</p>
-        </div>
-        <div className="flex items-center gap-2 w-full sm:w-auto">
+      <PageHeader 
+        title="AI Financial Evaluation" 
+        description="Get personalized insights and scoring based on your spending patterns"
+      >
           <Select 
             value={selectedDate.toISOString()} 
             onValueChange={(v) => { if (typeof v === "string") setSelectedDate(new Date(v)) }}
@@ -81,8 +80,7 @@ export default function AIEvaluationPage() {
             <Sparkles className={`mr-2 h-4 w-4 ${generateMutation.isPending ? 'animate-spin' : ''}`} /> 
             {generateMutation.isPending ? "Analyzing..." : "Generate Insights"}
           </Button>
-        </div>
-      </div>
+      </PageHeader>
 
       {isLoading ? (
         <div className="grid gap-6">
