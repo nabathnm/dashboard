@@ -48,7 +48,11 @@ export const analyticsService = {
 
     const { data, error } = await supabase
       .from("transactions")
-      .select("amount, category:transaction_categories!category_id(name, color, icon)")
+      .select(`
+        amount, 
+        category:transaction_categories!category_id(name, color, icon),
+        items:transaction_items(amount, category:transaction_categories(name, color, icon))
+      `)
       .eq("type", "expense")
       .gte("transaction_date", startDate)
       .lt("transaction_date", endDate);
@@ -59,14 +63,28 @@ export const analyticsService = {
     const categoryMap = new Map<string, { amount: number; color: string; icon?: string }>();
 
     (data ?? []).forEach((t: any) => {
-      const catName = t.category?.name ?? "Uncategorized";
-      const existing = categoryMap.get(catName) || {
-        amount: 0,
-        color: t.category?.color || CHART_COLORS[categoryMap.size % CHART_COLORS.length],
-        icon: t.category?.icon,
-      };
-      existing.amount += t.amount;
-      categoryMap.set(catName, existing);
+      // If transaction has items, use them instead of the transaction total
+      if (t.items && t.items.length > 0) {
+        t.items.forEach((item: any) => {
+          const catName = item.category?.name ?? "Uncategorized";
+          const existing = categoryMap.get(catName) || {
+            amount: 0,
+            color: item.category?.color || CHART_COLORS[categoryMap.size % CHART_COLORS.length],
+            icon: item.category?.icon,
+          };
+          existing.amount += Number(item.amount);
+          categoryMap.set(catName, existing);
+        });
+      } else {
+        const catName = t.category?.name ?? "Uncategorized";
+        const existing = categoryMap.get(catName) || {
+          amount: 0,
+          color: t.category?.color || CHART_COLORS[categoryMap.size % CHART_COLORS.length],
+          icon: t.category?.icon,
+        };
+        existing.amount += Number(t.amount);
+        categoryMap.set(catName, existing);
+      }
     });
 
     const total = Array.from(categoryMap.values()).reduce(
