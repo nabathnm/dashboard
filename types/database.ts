@@ -67,6 +67,18 @@ export interface Transaction {
   account?: Account;
   category?: TransactionCategory;
   destination_account?: Account;
+  items?: TransactionItem[];
+}
+
+export interface TransactionItem {
+  id: string;
+  transaction_id: string;
+  name: string;
+  amount: number;
+  category_id: string | null;
+  created_at: string;
+  // Joined
+  category?: TransactionCategory;
 }
 
 export interface SharedExpense {
@@ -228,6 +240,13 @@ export interface CreateTransactionDTO {
   amount: number;
   description?: string;
   date: string;
+  items?: CreateTransactionItemDTO[];
+}
+
+export interface CreateTransactionItemDTO {
+  name: string;
+  amount: number;
+  category_id?: string;
 }
 
 export interface UpdateTransactionDTO {
