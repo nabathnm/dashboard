@@ -1,0 +1,59 @@
+/* ─── FundFlow-Inspired Light Theme ─── */
+/* Soft lavender/blue palette with clean white cards and subtle depth */
+
+:root {
+  /* Background: soft cool lavender-blue */
+  --background: oklch(0.935 0.02 260);
+  --foreground: oklch(0.2 0.02 260);
+
+  /* Cards: clean white with subtle blue tint */
+  --card: oklch(0.985 0.005 260);
+  --card-foreground: oklch(0.2 0.02 260);
+
+  /* Popover: same as cards */
+  --popover: oklch(0.985 0.005 260);
+  --popover-foreground: oklch(0.2 0.02 260);
+
+  /* Primary: deep indigo/violet */
+  --primary: oklch(0.45 0.25 270);
+  --primary-foreground: oklch(0.98 0.005 260);
+
+  /* Secondary: soft lavender wash */
+  --secondary: oklch(0.92 0.02 265);
+  --secondary-foreground: oklch(0.25 0.03 265);
+
+  /* Muted: gentle gray-blue */
+  --muted: oklch(0.91 0.015 260);
+  --muted-foreground: oklch(0.5 0.02 260);
+
+  /* Accent: light blue highlight */
+  --accent: oklch(0.92 0.025 265);
+  --accent-foreground: oklch(0.25 0.03 265);
+
+  /* Destructive */
+  --destructive: oklch(0.55 0.22 25);
+
+  /* Borders: subtle cool gray */
+  --border: oklch(0.88 0.015 260);
+  --input: oklch(0.9 0.015 265);
+  --ring: oklch(0.5 0.22 270);
+
+  /* Chart colors — vibrant but harmonious */
+  --chart-1: oklch(0.6 0.2 265);
+  --chart-2: oklch(0.65 0.18 160);
+  --chart-3: oklch(0.7 0.15 80);
+  --chart-4: oklch(0.55 0.2 195);
+  --chart-5: oklch(0.6 0.22 350);
+
+  --radius: 0.875rem;
+
+  /* Sidebar: slightly deeper than background */
+  --sidebar: oklch(0.97 0.01 260);
+  --sidebar-foreground: oklch(0.3 0.02 260);
+  --sidebar-primary: oklch(0.45 0.25 270);
+  --sidebar-primary-foreground: oklch(0.98 0.005 260);
+  --sidebar-accent: oklch(0.93 0.02 265);
+  --sidebar-accent-foreground: oklch(0.25 0.03 265);
+  --sidebar-border: oklch(0.9 0.015 260);
+  --sidebar-ring: oklch(0.5 0.22 270);
+}
